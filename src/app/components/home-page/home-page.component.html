@@ -1,0 +1,92 @@
+<!--<div class="container">-->
+    <!--<div *ngFor="let itm of this.nodes">-->
+      <!--<h1>{{itm.name}}</h1>-->
+      <!--<br>-->
+      <!--<ul>-->
+        <!--<div *ngIf="itm.child">-->
+          <!--<div *ngFor="let a of itm.child">-->
+            <!--<li>{{a.name}}</li>-->
+            <!--<div *ngIf="a.child">-->
+              <!--<ul>-->
+                <!--<div *ngFor="let b of a.child">-->
+                  <!--<li>{{b.name}}</li>-->
+                  <!--<div *ngIf="b.child">-->
+                    <!--<ul>-->
+                      <!--<div *ngFor="let c of b.child">-->
+                        <!--<li>{{c.name}}</li>-->
+                        <!--<div *ngIf="c.child">-->
+                          <!--<ul>-->
+                            <!--<div *ngFor="let d of c.child">-->
+                              <!--<li>{{d.name}}</li>-->
+                              <!--<div *ngIf="d.child">-->
+                                <!--<ul>-->
+                                  <!--<div *ngFor="let e of d.child">-->
+                                    <!--<li>{{e.name}}</li>-->
+                                    <!--<div *ngIf="e.child">-->
+                                      <!--<ul>-->
+                                        <!--<div *ngFor="let f of e.child">-->
+                                          <!--<li>{{f.name}}</li>-->
+                                          <!--<div *ngIf="f.child">-->
+                                            <!--<ul>-->
+                                              <!--<div *ngFor="let g of f.child">-->
+                                                <!--<li>{{g.name}}</li>-->
+                                              <!--</div>-->
+                                            <!--</ul>-->
+                                          <!--</div>-->
+                                        <!--</div>-->
+                                      <!--</ul>-->
+                                    <!--</div>-->
+                                  <!--</div>-->
+                                <!--</ul>-->
+                              <!--</div>-->
+                            <!--</div>-->
+                          <!--</ul>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</ul>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</ul>-->
+  <!--</div>-->
+<!--</div>-->
+
+<div class="container">
+  <div *ngFor="let itm of this.nodes; index as x">
+    _id : {{itm._id}}
+    <div class="container">
+      <h4>Data - node {{x+1}}</h4>
+      <ul style="color: red">
+        <li>display_name : {{itm.data.node.display_name}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="modal-body container col-md-12">
+  <form>
+    <div class="form-group">
+      <label class="col-md-2">Parent</label>
+        <select #box (click)="update1(box.value)">
+          <option>Select parent..</option>
+          <option *ngFor="let x of this.parents">{{x}}</option>
+          <!--</div>-->
+        </select>
+      <!--<input #box id="val1" (input)="update1(box.value)" (blur)="update1(box.value)">-->
+    </div>
+    <div class="form-group">
+      <label class="col-md-2">Node name</label>
+      <input #box2 id="val2" (input)="update2(box2.value)" (blur)="update2(box2.value)" >
+    </div>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-success btn-fill pull-right" (click)="addDta()">Add data</button>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </form>
+</div>
+
