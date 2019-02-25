@@ -1,3 +1,5 @@
+installl nodemon with 'npm install -g nodemon' and run with command 'nodemon'
+
 # AngappAutomate
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
