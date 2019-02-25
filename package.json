@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "angular-flash-message": "^3.4.0",
+    "bower": "^1.8.8",
     "core-js": "^2.5.4",
     "ng-flash-messages": "^0.3.0",
     "ng-js-tree": "0.0.10",

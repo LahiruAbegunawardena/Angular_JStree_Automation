@@ -13,6 +13,7 @@ export class OrgPageComponent implements OnInit {
 
   data = [];
   enteredOrder = [];
+  // enteredOrder: number [][] = [[], [], [], []];
   str = '';
   needyDta = [];
   extraDta = {};
@@ -26,6 +27,13 @@ export class OrgPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    // const multi: number [][] = [[1, 2, 3], [23, 24, 25]];
+    //
+    // multi.forEach(a => {
+    //   a.forEach(b => {
+    //     console.log(b);
+    //   });
+    // });
   }
 
   updateIt() {
@@ -102,6 +110,7 @@ export class OrgPageComponent implements OnInit {
         this.data.push(
           { key: ky, value: this.user.value, child: [] }
         );
+        // this.enteredOrder[0] = this.count;
         this.enteredOrder[0] = this.count;
         console.log('entered order ' + JSON.stringify(this.data));
         console.log('entered data ' + JSON.stringify(this.enteredOrder));
