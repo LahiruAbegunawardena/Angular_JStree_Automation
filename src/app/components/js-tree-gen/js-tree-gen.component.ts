@@ -10,8 +10,9 @@ export class JsTreeGenComponent implements OnInit {
 
   keys = ['tenant_id', 'factory_id', 'floor_id', 'dpt_id', 'module_id', 'station_id'];
   user = { key: '', value: '' };
+  ableAddDta = false;
 
-  extraDta = {};        // extra data to be added when duplication needed to be added
+  extraDta = { tenant_id: '' };        // extra data to be added when duplication needed to be added
   count: any = 0;       // to count priority of keys
   str = '';
   public needyDta = []; // extra data to be added when duplication needed to be added
@@ -31,16 +32,21 @@ export class JsTreeGenComponent implements OnInit {
   }
 
   updateAddedDta() {
-    console.log(JSON.stringify(this.extraDta));
+    console.log('extra data : ' + JSON.stringify(this.extraDta));
     this.needyDta = [];
-    const abbc = new TreeNode('tenant_id', this.extraDta.tenant_id, this.count, this.needyDta);
+    const abbc = new TreeNode('tenant_id', this.extraDta.tenant_id, 0, this.needyDta);
     let i = 0;
     for (const obj in this.extraDta) {
-      i++;
-      abbc.addData(obj, this.extraDta[obj], i);
+      console.log('obj: ' + obj);
+      if (obj !== 'tenant_id') {
+        abbc.addData(obj, this.extraDta[obj], i);
+      }
+      i = i + 1;
     }
+    i = 0;
     this.DtaSet.push( abbc );
     console.log('Data added finally 2222: ', this.DtaSet);
+    this.ableAddDta = false;
   }
 
   getValues(itm) {
@@ -160,7 +166,7 @@ class TreeNode {
   }
 
   addChild(ab, ky, val) {
-    console.log('ab : ' + JSON.stringify(ab) + ab.child.length);
+    console.log('ab : ' + JSON.stringify(ab));
     if (ab.child.length === 0) {
       ab.child.push({
         key: ky,
@@ -181,6 +187,7 @@ class TreeNode {
     this.enteredOrder.forEach(aa => {
       if (aa === count) {
         // if data added already
+        alert('This is already added');
         chk = false;
         this.checkSta = 1;
       }
@@ -190,12 +197,14 @@ class TreeNode {
       this.enteredOrder.forEach(aa => {
         console.log('aa: ' + aa);
         if ((aa - 1) === count) {
+          alert('Child of this is already added');
           // if child of this is already added
           chk = false;
           chk2 = false;
           this.checkSta = 2;
         }
         if (chk && ((aa + 1) === count)) {
+          alert('Parent of this is already added');
           // if parent of this node added already
           chk = false;
           chk2 = false;
@@ -207,6 +216,8 @@ class TreeNode {
     if (chk && chk2) {
       // neither this data nor parent or child added
       this.checkSta = 0;
+      alert('Neither this data nor parent or child of this is added');
+
     }
     console.log('check stat : ' + this.checkSta);
   }
