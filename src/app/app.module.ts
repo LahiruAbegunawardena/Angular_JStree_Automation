@@ -8,6 +8,7 @@ import { OrgPageComponent } from './components/org-page/org-page.component';
 import {NgFlashMessagesModule} from 'ng-flash-messages';
 import {NgxSmartModalModule} from 'ngx-smart-modal';
 import { JsTreeGenComponent } from './components/js-tree-gen/js-tree-gen.component';
+import {NgxTreeDndModule} from 'ngx-tree-dnd';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { JsTreeGenComponent } from './components/js-tree-gen/js-tree-gen.compone
     BrowserModule,
     AppRoutingModule,
     NgFlashMessagesModule.forRoot(),
-    NgxSmartModalModule.forRoot()
+    NgxSmartModalModule.forRoot(),
+    NgxTreeDndModule
   ],
   providers: [],
   bootstrap: [AppComponent]

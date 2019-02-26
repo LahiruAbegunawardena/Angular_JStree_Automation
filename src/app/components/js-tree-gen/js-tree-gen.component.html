@@ -23,7 +23,7 @@
   </div>
 </form>
 
-<hr>
+<hr *ngIf="this.needyDta.length !== 0">
 
 <div class="row" style="background-color: whitesmoke" *ngIf="this.needyDta.length !== 0">
   <br>
@@ -47,44 +47,50 @@
 
 <hr>
 
-<div *ngFor="let itm of this.DtaSet">
-  <div *ngFor="let itmm of itm.Data">
-    <ul>
-      <li>{{itmm.key}} - {{itmm.value}}</li>
-      <div *ngIf="itmm.child">
-        <ul *ngFor="let a of itmm.child">
-          <li>{{a.key}} - {{a.value}}</li>
-          <div *ngIf="a.child">
-            <ul *ngFor="let b of a.child">
-              <li>{{b.key}} - {{b.value}}</li>
-              <div *ngIf="b.child">
-                <ul *ngFor="let c of b.child">
-                  <li>{{c.key}} - {{c.value}}</li>
-                  <div *ngIf="c.child">
-                    <ul *ngFor="let d of c.child">
-                      <li>{{d.key}} - {{d.value}}</li>
-                      <div *ngIf="d.child">
-                        <ul *ngFor="let e of d.child">
-                          <li>{{e.key}} - {{e.value}}</li>
-                          <div *ngIf="e.child">
-                            <ul *ngFor="let f of e.child">
-                              <li>{{f.key}} - {{f.value}}</li>
-                            </ul>
-                          </div>
-                        </ul>
-                      </div>
-                    </ul>
-                  </div>
-                </ul>
-              </div>
-            </ul>
-          </div>
-        </ul>
-      </div>
-    </ul>
-  </div>
+<div class="row">
+  <div *ngFor="let itm of this.DtaSet" class="col-md-8">
+    <div *ngFor="let itmm of itm.Data">
+      <ul>
+        <li>{{itmm.key}} - {{itmm.value}}</li>
+        <div *ngIf="itmm.child">
+          <ul *ngFor="let a of itmm.child">
+            <li>{{a.key}} - {{a.value}}</li>
+            <div *ngIf="a.child">
+              <ul *ngFor="let b of a.child">
+                <li>{{b.key}} - {{b.value}}</li>
+                <div *ngIf="b.child">
+                  <ul *ngFor="let c of b.child">
+                    <li>{{c.key}} - {{c.value}}</li>
+                    <div *ngIf="c.child">
+                      <ul *ngFor="let d of c.child">
+                        <li>{{d.key}} - {{d.value}}</li>
+                        <div *ngIf="d.child">
+                          <ul *ngFor="let e of d.child">
+                            <li>{{e.key}} - {{e.value}}</li>
+                            <div *ngIf="e.child">
+                              <ul *ngFor="let f of e.child">
+                                <li>{{f.key}} - {{f.value}}</li>
+                              </ul>
+                            </div>
+                          </ul>
+                        </div>
+                      </ul>
+                    </div>
+                  </ul>
+                </div>
+              </ul>
+            </div>
+          </ul>
+        </div>
+      </ul>
+    </div>
 
+  </div>
+  <div class="col-md-4">
+    <button class="btn btn-info">Create tree</button>
+  </div>
 </div>
+
 
 <hr>
 
@@ -99,3 +105,22 @@
   </div>
 </div>
 
+<br>
+<!--<lib-ngx-tree-component-->
+  <!--[treeData]="myTree"-->
+  <!--(ondragstart)="onDragStart($event)"-->
+  <!--(ondragenter)="onDragEnter($event)"-->
+  <!--(ondragleave)="onDragLeave($event)"-->
+  <!--(ondrop)="onDrop($event)"-->
+  <!--(onallowdrop)="onAllowDrop($event)"-->
+  <!--(onadditem)="onAddItem($event)"-->
+  <!--(onStartDeleteItem)="onStartDeleteItem($event)"-->
+  <!--(onFinishDeleteItem)="onFinishDeleteItem($event)"-->
+  <!--(onCancelDeleteItem)="onCancelDeleteItem($event)"-->
+  <!--(onStartRenameItem)="onStartRenameItem($event)"-->
+  <!--(onFinishRenameItem)="onFinishRenameItem($event)"-->
+  <!--[config]='config'>-->
+<!--</lib-ngx-tree-component>-->
+
+
+<lib-ngx-tree-component [treeData]='myTree' [config]='config'></lib-ngx-tree-component>

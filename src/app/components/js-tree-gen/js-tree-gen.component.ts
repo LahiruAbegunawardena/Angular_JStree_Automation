@@ -12,6 +12,60 @@ export class JsTreeGenComponent implements OnInit {
   user = { key: '', value: '' };
   ableAddDta = false;
 
+  myTree = [
+    {
+      name: 'Apple',
+      id: 1,
+      options: {
+        hidden: false,
+        position: 1,
+        href: 'https://github.com/Zicrael/ngx-tree-dnd'
+      },
+      childrens: [
+        {
+          name: 'Iphone',
+          id: 2,
+          childrens: [
+            {
+              name: 'Iphone child',
+              id: 21,
+              childrens: []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      name: 'Google',
+      id: 3,
+      childrens: [
+        {
+          name: 'Google play',
+          id: 4,
+          childrens: []
+        }
+      ]
+    }
+  ];
+
+  config =  {
+    showActionButtons: true, // show/hide action buttons for all elements
+    showAddButtons: true, // show/hide add button for all elements
+    showRenameButtons: true, // show/hide rename buttons for all elements
+    showDeleteButtons: true, // show/hide delete buttons for all elements
+    showRootActionButtons: true, // shlow/hide root action bottons
+    enableExpandButtons: true, // // show/hide expand buttons for all elements
+    enableDragging: true, // enable/disable dragging
+    rootTitle: 'Root',      // Tree title name
+    validationText: 'Enter valid name', // form validation text
+    minCharacterLength: 1, // minimum valid chars
+    setItemsAsLinks: false, // set tree as <a> link-items, use 'href' option for set link.
+    setFontSize: 16, // font-size of items in tree.
+    setIconSize: 14 // font-size of font-awesome icons inside buttons.
+  };
+
+  currentEvent: string = 'start do something';
+
   extraDta = { tenant_id: '' };        // extra data to be added when duplication needed to be added
   count: any = 0;       // to count priority of keys
   str = '';
@@ -21,6 +75,44 @@ export class JsTreeGenComponent implements OnInit {
 
   DtaSet = [];          // data set array
   ngOnInit() {
+  }
+
+  onDragStart(event) {
+    this.currentEvent = ' on drag start';
+  }
+  onDrop(event) {
+    this.currentEvent = 'on drop';
+  }
+  onAllowDrop(event) {
+    this.currentEvent = 'on allow drop';
+  }
+  onDragEnter(event) {
+    this.currentEvent = 'on drag enter';
+  }
+  onDragLeave(event) {
+    this.currentEvent = 'on drag leave';
+  }
+  onAddItem(event) {
+    this.currentEvent = 'on add item';
+    console.log(event);
+  }
+  onStartRenameItem(event) {
+    this.currentEvent = 'on start edit item';
+  }
+  onFinishRenameItem(event) {
+    this.currentEvent = 'on finish edit item';
+  }
+  onStartDeleteItem(event) {
+    console.log('start delete');
+    this.currentEvent = 'on start delete item';
+  }
+  onFinishDeleteItem(event) {
+    console.log('finish delete');
+    this.currentEvent = 'on finish delete item';
+  }
+  onCancelDeleteItem(event) {
+    console.log('cancel delete');
+    this.currentEvent = 'on cancel delete item';
   }
 
   update1(val) { this.user.key = val; }

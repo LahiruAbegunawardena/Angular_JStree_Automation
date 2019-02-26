@@ -25,6 +25,7 @@
     "ng-flash-messages": "^0.3.0",
     "ng-js-tree": "0.0.10",
     "ngx-smart-modal": "^7.1.1",
+    "ngx-tree-dnd": "^2.5.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "web-animations-js": "^2.3.1",
@@ -33,7 +34,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
     "@angular/cli": "~7.3.0",
-    "@angular/compiler-cli": "^7.2.5",
+    "@angular/compiler-cli": "^7.2.6",
     "@angular/language-service": "~7.2.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
