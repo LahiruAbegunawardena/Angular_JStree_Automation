@@ -2,9 +2,9 @@
 <form>
   <div class="row">
     <div class="form-group col-md-6">
-      <label>Keys</label>
+      <label>Name</label>
       <select class="form-control " #box (click)="update1(box.value)">
-        <option value="">Select key..</option>
+        <option value="">Select Name..</option>
         <option *ngFor="let x of this.keys">{{x}}</option>
       </select>
     </div>
@@ -49,48 +49,50 @@
 
 <div class="row">
 
-  <div *ngFor="let itm of this.DtaSet" class="col-md-8">
-    <h2>Tree Data : </h2>
-    <br>
-    <div *ngFor="let itmm of itm.Data">
-      <ul>
-        <li>{{itmm.key}} - {{itmm.value}}</li>
-        <div *ngIf="itmm.child">
-          <ul *ngFor="let a of itmm.child">
-            <li>{{a.key}} - {{a.value}}</li>
-            <div *ngIf="a.child">
-              <ul *ngFor="let b of a.child">
-                <li>{{b.key}} - {{b.value}}</li>
-                <div *ngIf="b.child">
-                  <ul *ngFor="let c of b.child">
-                    <li>{{c.key}} - {{c.value}}</li>
-                    <div *ngIf="c.child">
-                      <ul *ngFor="let d of c.child">
-                        <li>{{d.key}} - {{d.value}}</li>
-                        <div *ngIf="d.child">
-                          <ul *ngFor="let e of d.child">
-                            <li>{{e.key}} - {{e.value}}</li>
-                            <div *ngIf="e.child">
-                              <ul *ngFor="let f of e.child">
-                                <li>{{f.key}} - {{f.value}}</li>
-                              </ul>
-                            </div>
-                          </ul>
-                        </div>
-                      </ul>
-                    </div>
-                  </ul>
-                </div>
-              </ul>
-            </div>
-          </ul>
-        </div>
-      </ul>
+  <div class="col-md-8">
+    <div *ngFor="let itm of this.DtaSet">
+      <h2>Tree Data : </h2>
+      <br>
+      <div *ngFor="let itmm of itm.Data">
+        <ul>
+          <li>{{itmm.name}} - {{itmm.value}}</li>
+          <div *ngIf="itmm.children">
+            <ul *ngFor="let a of itmm.children">
+              <li>{{a.name}} - {{a.value}}</li>
+              <div *ngIf="a.children">
+                <ul *ngFor="let b of a.children">
+                  <li>{{b.name}} - {{b.value}}</li>
+                  <div *ngIf="b.children">
+                    <ul *ngFor="let c of b.children">
+                      <li>{{c.name}} - {{c.value}}</li>
+                      <div *ngIf="c.children">
+                        <ul *ngFor="let d of c.children">
+                          <li>{{d.name}} - {{d.value}}</li>
+                          <div *ngIf="d.children">
+                            <ul *ngFor="let e of d.children">
+                              <li>{{e.name}} - {{e.value}}</li>
+                              <div *ngIf="e.children">
+                                <ul *ngFor="let f of e.children">
+                                  <li>{{f.name}} - {{f.value}}</li>
+                                </ul>
+                              </div>
+                            </ul>
+                          </div>
+                        </ul>
+                      </div>
+                    </ul>
+                  </div>
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </ul>
+      </div>
     </div>
-
   </div>
+
   <div class="col-md-4">
-    <button class="btn btn-info btn-block" (click)="showTree()">(Show / Remove) tree</button>
+    <button class="btn btn-info btn-block" (click)="showTree()"> (Show / Hide) tree </button>
     <br>
     <tree-root *ngIf="this.shwtree" [nodes]="nodes" [options]="options"></tree-root>
   </div>

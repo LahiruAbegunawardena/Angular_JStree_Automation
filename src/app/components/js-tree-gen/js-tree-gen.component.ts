@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgFlashMessageService} from 'ng-flash-messages';
+import {ITreeOptions, KEYS, TREE_ACTIONS} from 'angular-tree-component';
 
 @Component({
   selector: 'app-js-tree-gen',
@@ -13,31 +14,32 @@ export class JsTreeGenComponent implements OnInit {
   ableAddDta = false;
   shwtree = false;
 
-  nodes = [
-    {
-      id: 1,
-      name: 'root1',
-      children: [
-        { id: 2, name: 'child1' },
-        { id: 3, name: 'child2' }
-      ]
-    },
-    {
-      id: 4,
-      name: 'root2',
-      children: [
-        { id: 5, name: 'child2.1' },
-        {
-          id: 6,
-          name: 'child2.2',
-          children: [
-            { id: 7, name: 'subsub' }
-          ]
+  nodes = [];
+  options: ITreeOptions = {
+    isExpandedField: 'expanded',
+    useCheckbox: true,
+    hasChildrenField: 'nodes',
+    actionMapping: {
+      mouse: {
+        dblClick: (tree, node, $event) => {
+          if (node.hasChildren) { TREE_ACTIONS.TOGGLE_EXPANDED(tree, node, $event); }
         }
-      ]
-    }
-  ];
-  options = {};
+      },
+      keys: {
+        [KEYS.ENTER]: (tree, node, $event) => {
+          node.expandAll();
+        }
+      }
+    },
+    // nodeHeight: 23,
+    allowDrag: (node) => {
+      return true;
+    },
+    allowDrop: (node) => {
+      return true;
+    },
+
+  };
 
   // myTree = [
   //   {
@@ -75,8 +77,6 @@ export class JsTreeGenComponent implements OnInit {
   //   }
   // ];
 
-  currentEvent: string = 'start do something';
-
   extraDta = { tenant_id: '' };        // extra data to be added when duplication needed to be added
   count: any = 0;       // to count priority of keys
   str = '';
@@ -90,6 +90,13 @@ export class JsTreeGenComponent implements OnInit {
 
   showTree() {
     this.shwtree = ! this.shwtree;
+    this.nodes = [];
+    this.DtaSet.forEach(aa => {
+      aa.Data.forEach(bb => {
+        this.nodes.push(bb);
+      });
+    });
+    console.log('nodes: ' + JSON.stringify(this.nodes));
   }
 
   update1(val) { this.user.key = val; }
@@ -116,12 +123,14 @@ export class JsTreeGenComponent implements OnInit {
     this.DtaSet.push( abbc );
     console.log('Data added finally 2222: ', this.DtaSet);
     this.ableAddDta = false;
+    this.extraDta = { tenant_id: '' };
+    this.shwtree = false;
   }
 
   getValues(itm) {
     this.str = itm.value;
-    if (itm.child.length > 0) {
-      itm.child.forEach(aa => {
+    if (itm.children.length > 0) {
+      itm.children.forEach(aa => {
         this.str = this.str + ' - ' + this.getValues(aa);
       });
     }
@@ -165,6 +174,7 @@ export class JsTreeGenComponent implements OnInit {
         });
       }
     }
+    this.shwtree = false;
   }
 }
 
@@ -190,9 +200,9 @@ class TreeNode {
     console.log('enteredOrder : ' + JSON.stringify(this.enteredOrder));
 
     this.Data.push({
-      key: keyval,
+      name: keyval,
       value: val,
-      child: []
+      children: []
     });
     this.printData();
   }
@@ -213,9 +223,9 @@ class TreeNode {
       const nw = this.Data[0];
       this.Data = [];
       this.Data.push({
-        key: ky,
+        name: ky,
         value: val,
-        child: [nw]
+        children: [nw]
       });
       this.enteredOrder.push(count);
     } else if (this.checkSta === 3) {
@@ -236,15 +246,15 @@ class TreeNode {
 
   addChild(ab, ky, val) {
     console.log('ab : ' + JSON.stringify(ab));
-    if (ab.child.length === 0) {
-      ab.child.push({
-        key: ky,
+    if (ab.children.length === 0) {
+      ab.children.push({
+        name: ky,
         value: val,
-        child: []
+        children: []
       });
     } else {
       // console.log('circulate....');
-      ab.child.forEach(aab => {
+      ab.children.forEach(aab => {
         this.addChild(aab, ky, val);
       });
     }
