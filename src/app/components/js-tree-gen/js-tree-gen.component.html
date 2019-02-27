@@ -48,7 +48,10 @@
 <hr>
 
 <div class="row">
+
   <div *ngFor="let itm of this.DtaSet" class="col-md-8">
+    <h2>Tree Data : </h2>
+    <br>
     <div *ngFor="let itmm of itm.Data">
       <ul>
         <li>{{itmm.key}} - {{itmm.value}}</li>
@@ -87,7 +90,9 @@
 
   </div>
   <div class="col-md-4">
-    <button class="btn btn-info">Create tree</button>
+    <button class="btn btn-info btn-block" (click)="showTree()">(Show / Remove) tree</button>
+    <br>
+    <tree-root *ngIf="this.shwtree" [nodes]="nodes" [options]="options"></tree-root>
   </div>
 </div>
 
@@ -95,7 +100,7 @@
 <hr>
 
 <div class="container">
-  <h2>Path of items</h2>
+  <h2>Path of values</h2>
   <br>
   <div class="route" *ngFor="let itm1 of this.DtaSet">
     <div *ngFor="let itm of itm1.Data">
@@ -106,21 +111,6 @@
 </div>
 
 <br>
-<!--<lib-ngx-tree-component-->
-  <!--[treeData]="myTree"-->
-  <!--(ondragstart)="onDragStart($event)"-->
-  <!--(ondragenter)="onDragEnter($event)"-->
-  <!--(ondragleave)="onDragLeave($event)"-->
-  <!--(ondrop)="onDrop($event)"-->
-  <!--(onallowdrop)="onAllowDrop($event)"-->
-  <!--(onadditem)="onAddItem($event)"-->
-  <!--(onStartDeleteItem)="onStartDeleteItem($event)"-->
-  <!--(onFinishDeleteItem)="onFinishDeleteItem($event)"-->
-  <!--(onCancelDeleteItem)="onCancelDeleteItem($event)"-->
-  <!--(onStartRenameItem)="onStartRenameItem($event)"-->
-  <!--(onFinishRenameItem)="onFinishRenameItem($event)"-->
-  <!--[config]='config'>-->
-<!--</lib-ngx-tree-component>-->
 
+<!--<lib-ngx-tree-component *ngIf="this.shwtree" [treeData]='myTree' [config]='config'></lib-ngx-tree-component>-->
 
-<lib-ngx-tree-component [treeData]='myTree' [config]='config'></lib-ngx-tree-component>

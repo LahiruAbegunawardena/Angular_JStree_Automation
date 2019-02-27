@@ -6,8 +6,8 @@ import {JsTreeGenComponent} from './components/js-tree-gen/js-tree-gen.component
 
 const routes: Routes = [
   // { path: '', component: HomePageComponent}
-  { path: '', component: OrgPageComponent},
-  { path: 'jsGen', component: JsTreeGenComponent}
+  { path: '', component:  JsTreeGenComponent },
+  { path: 'jsGen', component: OrgPageComponent }
 ];
 
 @NgModule({

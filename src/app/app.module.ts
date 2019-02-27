@@ -9,6 +9,7 @@ import {NgFlashMessagesModule} from 'ng-flash-messages';
 import {NgxSmartModalModule} from 'ngx-smart-modal';
 import { JsTreeGenComponent } from './components/js-tree-gen/js-tree-gen.component';
 import {NgxTreeDndModule} from 'ngx-tree-dnd';
+import {TreeModule} from 'angular-tree-component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {NgxTreeDndModule} from 'ngx-tree-dnd';
     AppRoutingModule,
     NgFlashMessagesModule.forRoot(),
     NgxSmartModalModule.forRoot(),
-    NgxTreeDndModule
+    NgxTreeDndModule,
+    TreeModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
