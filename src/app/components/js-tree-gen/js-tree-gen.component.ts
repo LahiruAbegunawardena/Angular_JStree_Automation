@@ -13,9 +13,9 @@ export class JsTreeGenComponent implements OnInit {
   user = { key: '', value: '' };
   ableAddDta = false;
   shwtree = false;
-
   nodes = [];
   options: ITreeOptions = {
+    displayField: 'value',
     isExpandedField: 'expanded',
     useCheckbox: true,
     hasChildrenField: 'nodes',
